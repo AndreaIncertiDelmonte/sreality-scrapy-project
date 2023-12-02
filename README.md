@@ -1,4 +1,4 @@
-# Sreality Scrapy
+# Sreality Scrapy Project
 
 Application based on the [Scrapy](https://scrapy.org/) framework that extracts the first 500 flats (title and image url) from https://www.sreality.cz/.
 Data are stored in a [Postgres](https://www.postgresql.org/) DB and they can be accessed via a simple [Flask](https://flask.palletsprojects.com/en/3.0.x/) web application.
