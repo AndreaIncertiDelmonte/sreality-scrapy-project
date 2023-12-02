@@ -43,8 +43,8 @@ if __name__ == '__main__':
     flats_data=sreality_flat_spider_result()
 
     # Debug csv data exporter
-    keys = flats_data[0].keys()
-    with open('flats_data.csv', 'w', newline='') as output_file_name:
-        writer = csv.DictWriter(output_file_name, keys)
-        writer.writeheader()
-        writer.writerows(flats_data)
+    #keys = flats_data[0].keys()
+    #with open('flats_data.csv', 'w', newline='') as output_file_name:
+    #    writer = csv.DictWriter(output_file_name, keys)
+    #    writer.writeheader()
+    #    writer.writerows(flats_data)

@@ -7,17 +7,18 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import psycopg2
+import os
 
 class PostgresSrealityPipeline:
 
     def __init__(self):
 
-        ## Connection Details
-        hostname = 'db' #'localhost'
-        username = 'scrapy_u'
-        password = 'scrapy_p'
-        database = 'sreality_db'
-        port = '5432'
+        ## Connection details from ENV variables
+        hostname = os.getenv("POSTGRES_HOST", "127.0.0.1")
+        username = os.getenv("POSTGRES_USER", "default_pg_user")
+        password = os.getenv("POSTGRES_PASSWORD", "default_pg_password")
+        database = os.getenv("POSTGRES_DB", "default_pg_db")
+        port = os.getenv("POSTGRES_HOST_PORT", "5432")
 
         ## Create/Connect to database
         self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database, port=port)

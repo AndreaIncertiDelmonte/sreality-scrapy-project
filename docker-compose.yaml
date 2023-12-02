@@ -6,14 +6,11 @@ services:
     image: postgres
     restart: always
     ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=scrapy_u
-      - PGUSER=postgres
-      - POSTGRES_PASSWORD=scrapy_p
-      - POSTGRES_DB=sreality_db
+      - "${POSTGRES_HOST_PORT}:5432"
+    env_file:
+      - db-variables.env
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "sreality_db"]
+      test: ["CMD-SHELL", "pg_isready", "-d", "${POSTGRES_DB}"]
       interval: 10s
       timeout: 20s
       retries: 5
@@ -31,6 +28,8 @@ services:
       - ./sreality:/usr/src/app
     ports:
       - 5000:5000
+    env_file:
+      - db-variables.env
     depends_on:
       db:
         condition: service_healthy
@@ -41,6 +40,8 @@ services:
       - ./flask_app:/usr/src/app
     ports: 
       - '8080:8080'
+    env_file:
+      - db-variables.env
     depends_on:
       db:
         condition: service_healthy

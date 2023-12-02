@@ -16,7 +16,7 @@ List of containers involved:
 - Start the application
     ```
     cd <repo-root>
-    docker compose up
+    docker compose --env-file db-variables.env up
     ```
 
 ## Web links
