@@ -3,7 +3,7 @@ from flask import Flask, render_template
 from models import Flat, db
 
 def create_app():
-    app = Flask(__name__)  # flask app object
+    app = Flask(__name__)  # flask app object 
     app.config.from_object('config')  # Configuring from Python Files
 
     db.init_app(app)  # Initializing the database
@@ -20,12 +20,6 @@ app = create_app()
 
 if __name__ == '__main__':  # Running the app
     app.run(host='0.0.0.0', port=8080, debug=True)
-
-
-
-
-
-
 
 
 

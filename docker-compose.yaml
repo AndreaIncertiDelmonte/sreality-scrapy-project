@@ -6,10 +6,11 @@ services:
     image: postgres
     restart: always
     ports:
-    - "5432:5432"
+      - "5432:5432"
     environment:
-      - POSTGRES_USER=pgu_scrapy
-      - POSTGRES_PASSWORD=scrapy_pgu
+      - POSTGRES_USER=scrapy_u
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=scrapy_p
       - POSTGRES_DB=sreality_db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "sreality_db"]
@@ -43,4 +44,3 @@ services:
     depends_on:
       db:
         condition: service_healthy
-        

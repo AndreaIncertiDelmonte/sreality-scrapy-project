@@ -12,22 +12,15 @@ class SrealityflatsSpider(scrapy.Spider):
     name = "SrealityFlats"
     allowed_domains = ["www.sreality.cz"]
     start_urls = ['https://www.sreality.cz/api/cs/v2/estates?category_main_cb=1&category_type_cb=1&page=0&per_page=500']
-    #start_urls = ['https://www.sreality.cz/api/cs/v2/estates?category_main_cb=1&category_type_cb=1&page=0&per_page=10']
 
     def parse(self, response):
         sreality_item = SrealityItem()
         response_json = json.loads(response.body)
         for flat in response_json.get('_embedded').get('estates'):
-            """
-            yield (
-                {
-                    'title': re.sub(r'\s', ' ', flat.get('name')),
-                    'image_url': flat.get('_links').get('images')[0].get('href'),
-                }
-            )
-            """
+            
             sreality_item['title'] = re.sub(r'\s', ' ', flat.get('name'))
             sreality_item['image_url'] = flat.get('_links').get('images')[0].get('href')
+
             yield sreality_item
             
 
@@ -41,17 +34,17 @@ def sreality_flat_spider_result():
     crawler_process = CrawlerProcess()
     crawler_process.crawl(SrealityflatsSpider)
     crawler_process.start()
+
     return flats_results
 
 
 if __name__ == '__main__':
-    print("Spider main function")
+    
     flats_data=sreality_flat_spider_result()
 
+    # Debug csv data exporter
     keys = flats_data[0].keys()
     with open('flats_data.csv', 'w', newline='') as output_file_name:
         writer = csv.DictWriter(output_file_name, keys)
         writer.writeheader()
         writer.writerows(flats_data)
-
-    

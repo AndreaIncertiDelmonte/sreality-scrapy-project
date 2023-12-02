@@ -1,34 +1,19 @@
 <!DOCTYPE html>
-<html lang="cs">
-<head>
-	<title>Sreality Scrapy Task</title>
-</head>
-
-<style>
-    div.flats {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    div.flat {
-        height: 25%;
-        width: 22%;
-    }
-</style>
-
-<body>
-    <h1>Sreality Scrapy Task</h1>
-    <h2>Loaded {{flats|length}} flats</h2>
-	<div class="flats">
-        {% for flat in flats %}
-
-		<div class="flat">
-            <img src={{ flat.image_url}}>
-			<h2>{{ flat.title }}</h2>
-		</div>
-
-        {% endfor %}
-	</div>
-
-</body>
+<html>
+    <head>
+        <title>Sreality Scrapy</title>
+        <link rel="stylesheet"  href= "{{ url_for('static', filename='styles/style.css') }}" >
+    </head>
+    <body>
+        <h1>Sreality Scrapy</h1>
+        <h2>Loaded {{flats|length}} flats from  <a href="https://www.sreality.cz/">www.sreality.cz</a></h2>
+        <div class="flats_container">
+            {% for flat in flats %}
+                <div class="flat">
+                    <img class="flat_pic" src={{ flat.image_url}}>
+                    <h3 class="flat_title">{{ flat.title }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
 </html>

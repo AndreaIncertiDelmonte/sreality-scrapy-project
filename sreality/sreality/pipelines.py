@@ -14,8 +14,8 @@ class PostgresSrealityPipeline:
 
         ## Connection Details
         hostname = 'db' #'localhost'
-        username = 'pgu_scrapy'
-        password = 'scrapy_pgu'
+        username = 'scrapy_u'
+        password = 'scrapy_p'
         database = 'sreality_db'
         port = '5432'
 
